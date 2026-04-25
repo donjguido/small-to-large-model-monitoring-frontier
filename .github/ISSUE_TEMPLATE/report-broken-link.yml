@@ -1,0 +1,22 @@
+name: Report a broken link
+description: A link on the site returns 404 or redirects somewhere wrong.
+title: "[broken-link] "
+labels: ["broken-link"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where is the broken link?
+      description: Page URL and/or entry slug.
+    validations:
+      required: true
+  - type: input
+    id: bad-url
+    attributes:
+      label: The broken URL
+    validations:
+      required: true
+  - type: input
+    id: correct-url
+    attributes:
+      label: The correct URL (if known)

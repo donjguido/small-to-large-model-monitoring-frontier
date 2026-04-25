@@ -1,0 +1,1070 @@
+# Every bibliography entry from the source report, keyed by a stable slug.
+# Annotations are the report's prose verbatim — do not paraphrase.
+
+entries:
+  # ========================================================================
+  # 2.1 CoT and behavioral monitoring
+  # ========================================================================
+  - id: baker-2025-monitoring-reasoning
+    title: "Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation"
+    authors: [Bowen Baker, Joost Huizinga, Leo Gao, Zehao Dou, Melody Guan, Aleksander Mądry, Wojciech Zaremba, Jakub Pachocki, David Farhi]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2503.11926"
+    url: "https://arxiv.org/abs/2503.11926"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [foundational, monitor-in-the-loop, empirical, cautionary]
+    organizations: [OpenAI]
+    is_foundational: true
+    annotation: >
+      OpenAI uses GPT-4o to monitor o3-mini's CoT in agentic coding, detects
+      reward hacking dramatically better than action/output-only baselines, and
+      then shows that folding the monitor into the RL reward produces
+      "obfuscated reward hacking" — the model continues cheating but hides
+      intent. The single most cited empirical result in current CoT-monitoring
+      discourse and the source of the "monitorability tax" concept.
+
+  - id: korbak-2025-cot-monitorability
+    title: "Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety"
+    authors: [Tomek Korbak, Mikita Balesni, Ryan Barnes, Yoshua Bengio, Joe Benton, Joseph Bloom, "…", Vlad Mikulik, Rohin Shah, Bowen Baker]
+    year: 2025
+    venue: "arXiv preprint (cross-lab position paper)"
+    arxiv_id: "2507.11473"
+    url: "https://arxiv.org/abs/2507.11473"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [foundational, position-paper, policy, cross-lab]
+    organizations: [OpenAI, Anthropic, "Google DeepMind", "UK AISI", "Apollo Research", "Redwood Research", METR, academia]
+    is_foundational: true
+    annotation: >
+      A 41-author cross-lab position paper (OpenAI + Anthropic + DeepMind + UK
+      AISI + Apollo + Redwood + METR + academia), endorsed by Bowman, Hinton,
+      Schulman, Sutskever. Argues monitorability is a first-class safety
+      property distinct from faithfulness; recommends frontier developers
+      measure it, report it in system cards, and avoid training practices that
+      destroy it. Sets the current policy framing for the field.
+
+  - id: emmons-2025-when-cot-necessary
+    title: "When Chain of Thought is Necessary, Language Models Struggle to Evade Monitors"
+    authors: [Scott Emmons, Erik Jenner, David Elson, Ashwin Saurous, Senthooran Rajamanoharan, Stephen Chen, Irina Shafkat, Rohin Shah]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2507.05246"
+    url: "https://arxiv.org/abs/2507.05246"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [empirical, red-team, counter-pessimism]
+    organizations: ["Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      DeepMind red-team evaluation distinguishing CoT-as-rationalization
+      (post-hoc) from CoT-as-computation (load-bearing). When CoT is necessary
+      to perform a task, current models cannot reliably evade monitors.
+      Strongest empirical pushback against strong-form CoT-unfaithfulness
+      pessimism; reframes the practical question as "is CoT load-bearing in
+      deployment?"
+
+  - id: guan-2025-monitoring-monitorability
+    title: "Monitoring Monitorability / Evaluating Chain-of-Thought Monitorability"
+    authors: [Melody Guan, Yan Wang, Micah Carroll, Zehao Dou, Jason Wei, Adam Williams, Arnav, "…", Bowen Baker]
+    year: 2025
+    venue: "arXiv preprint + OpenAI blog (Dec 2025)"
+    arxiv_id: "2512.18311"
+    url: "https://arxiv.org/abs/2512.18311"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [methodology, metrics, deployed-signal]
+    organizations: [OpenAI]
+    is_foundational: false
+    annotation: >
+      OpenAI's operational metric suite: 13 evaluations across 24 environments,
+      three archetypes (intervention, process, outcome-property). Finds longer
+      CoTs and larger reasoning efforts correlate with better monitorability;
+      commits OpenAI to reporting the metric in future system cards.
+
+  - id: chen-yh-2026-controllability
+    title: "Reasoning Models Struggle to Control their Chains of Thought"
+    authors: [Yueh-Han Chen, Tomek Korbak, Micah Carroll, Bowen Baker, Ian Kivlichan]
+    year: 2026
+    venue: "arXiv preprint"
+    arxiv_id: "2603.05706"
+    url: "https://arxiv.org/abs/2603.05706"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [empirical, benchmark, controllability]
+    organizations: [OpenAI, academia]
+    is_foundational: false
+    needs_verification: true
+    annotation: >
+      CoT-Control benchmark (14,076 instances × 13 frontier models): tests
+      whether a model can follow instructions about its CoT (e.g., reason
+      without using a specific word) while still solving a hard task. Claude
+      Sonnet 4.5 controls CoT only 2.7% of the time vs. 61.9% for outputs; all
+      frontier models score 0.1–15.4%. Controllability *decreases* with more RL
+      training and longer reasoning, which is partially reassuring for
+      near-term monitorability but explicitly unexplained.
+
+  - id: turpin-2023-unfaithful-cot
+    title: "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting"
+    authors: [Miles Turpin, Julian Michael, Ethan Perez, Samuel R. Bowman]
+    year: 2023
+    venue: "NeurIPS 2023 (arXiv:2305.04388)"
+    arxiv_id: "2305.04388"
+    url: "https://arxiv.org/abs/2305.04388"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [foundational, faithfulness, methodology]
+    organizations: [NYU, Anthropic]
+    is_foundational: true
+    annotation: >
+      Shows CoTs can be systematically biased by features the model never
+      mentions. The foundational CoT-faithfulness paper; its results are
+      constantly re-cited in monitoring-fragility arguments.
+
+  - id: lanham-2023-measuring-faithfulness
+    title: "Measuring Faithfulness in Chain-of-Thought Reasoning"
+    authors: [Tamera Lanham, Anna Chen, Ansh Radhakrishnan, Benoit Steiner, Carson Denison, "…", Ethan Perez]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2307.13702"
+    url: "https://arxiv.org/abs/2307.13702"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [methodology, faithfulness, intervention-tests]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Anthropic intervention tests (Early Answering, Adding Mistakes,
+      Paraphrasing, Filler Tokens). Finds faithfulness varies with scale and
+      task, often non-monotonically. Methodological cornerstone of the
+      faithfulness literature.
+
+  - id: chen-2025-reasoning-models-dont-say
+    title: "Reasoning Models Don't Always Say What They Think"
+    authors: [Anna Chen, Joe Benton, Ansh Radhakrishnan, Carson Denison, "…", Ethan Perez]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2505.05410"
+    url: "https://arxiv.org/abs/2505.05410"
+    category_id: behavioral
+    subcategory_id: cot
+    tags: [empirical, faithfulness, hint-injection]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Hint-injection on Claude 3.7 Sonnet and DeepSeek R1: models verbalize
+      used hints only 25–39% of the time, and as low as ~20% on safety-relevant
+      hints. Authors conclude runtime CoT monitoring "unlikely to reliably
+      catch rare catastrophic behaviors" when CoT is not load-bearing. The
+      empirical basis for the "fragile" framing in Korbak et al. 2025.
+
+  - id: chennabasappa-2025-llamafirewall
+    title: "LlamaFirewall: An Open Source Guardrail System for Building Secure AI Agents"
+    authors: [Sahana Chennabasappa, Cyrus Nikolaidis, Daniel Song, Tobias Molnar, "…", Joshua Saxe]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2505.03574"
+    url: "https://arxiv.org/abs/2505.03574"
+    category_id: behavioral
+    subcategory_id: action
+    tags: [deployed-system, hybrid, production, open-source]
+    organizations: [Meta]
+    is_foundational: false
+    annotation: >
+      Meta's three-component production guardrail (PromptGuard 2 +
+      AlignmentCheck + CodeShield), 83% reduction in attack success on
+      AgentDojo. Important caveat: AlignmentCheck is itself vulnerable to
+      guardrail injection; independent researchers have demonstrated
+      multilingual/Unicode bypasses that Meta closed as "informative" rather
+      than vulnerability.
+
+  - id: kutasov-2025-shade-arena
+    title: "SHADE-Arena: Evaluating Sabotage and Monitoring in LLM Agents"
+    authors: [Jiri Kutasov, Yu Sun, Pietro Colognese, Teun van der Weij, "…", Joe Benton]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2506.15740"
+    url: "https://arxiv.org/abs/2506.15740"
+    category_id: behavioral
+    subcategory_id: trajectory
+    tags: [benchmark, sabotage, trajectory]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      17 benign/covert task pairs in realistic tool-using environments; Gemini
+      2.5 Pro monitor achieves AUC 0.87 — authors explicitly call this
+      insufficient for safety-critical use. First serious trajectory-level
+      monitoring benchmark.
+
+  - id: inan-2023-llama-guard
+    title: "Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations"
+    authors: [Hakan Inan, Kartikeya Upasani, Jianfeng Chi, Rashi Rungta, "…", Madian Khabsa]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2312.06674"
+    url: "https://arxiv.org/abs/2312.06674"
+    category_id: behavioral
+    subcategory_id: output
+    tags: [foundational, deployed-system, open-source, classifier]
+    organizations: [Meta]
+    is_foundational: false
+    annotation: >
+      Foundational open-source I/O classifier; generations 2–4 have iterated on
+      taxonomy and multilingual coverage. The commercial baseline for output
+      monitoring.
+
+  # ========================================================================
+  # 2.2 AI control and protocol-level monitoring
+  # ========================================================================
+  - id: greenblatt-2024-ai-control
+    title: "AI Control: Improving Safety Despite Intentional Subversion"
+    authors: [Ryan Greenblatt, Buck Shlegeris, Kshitij Sachan, Fabien Roger]
+    year: 2024
+    venue: "ICML 2024 oral (arXiv:2312.06942)"
+    arxiv_id: "2312.06942"
+    url: "https://arxiv.org/abs/2312.06942"
+    category_id: control
+    subcategory_id: trusted-monitoring
+    tags: [foundational, methodology, protocol]
+    organizations: ["Redwood Research"]
+    is_foundational: true
+    annotation: >
+      Defines the control paradigm: red-team/blue-team evaluations of
+      deployment protocols under the pessimistic assumption that U actively
+      attacks. APPS backdoor setting with GPT-4 as U, GPT-3.5 as T. Introduces
+      trusted monitoring, trusted editing, defer-to-trusted, untrusted
+      monitoring. **The** foundational reference; virtually every subsequent
+      monitoring paper implicitly adopts its framing.
+
+  - id: bhatt-2025-ctrl-z
+    title: "Ctrl-Z: Controlling AI Agents via Resampling"
+    authors: [Aryan Bhatt, Cody Rushing, Adam Kaufman, "…", Buck Shlegeris]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2504.10374"
+    url: "https://arxiv.org/abs/2504.10374"
+    category_id: control
+    subcategory_id: resample
+    tags: [protocol, agent, empirical]
+    organizations: ["Redwood Research"]
+    is_foundational: false
+    annotation: >
+      First control evaluation in a multi-step agent setting (BashBench, 257
+      sysadmin tasks). Introduces **resample protocols**: on suspicion, draw
+      additional U or T samples to extract selection pressure and information.
+      "Defer to resample" achieves ~84% safety at 95% usefulness, dominating
+      prior defer/edit protocols.
+
+  - id: wen-2024-adaptive-deployment
+    title: "Adaptive Deployment of Untrusted LLMs Reduces Distributed Threats"
+    authors: [Jiaxin Wen, Vivek Hebbar, Caleb Larson, Aryan Bhatt, "…", Akbir Khan]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2411.17693"
+    url: "https://arxiv.org/abs/2411.17693"
+    category_id: control
+    subcategory_id: adaptive
+    tags: [protocol, diffuse-threats, empirical]
+    organizations: ["Redwood Research", academia]
+    is_foundational: false
+    annotation: >
+      Extends control to diffuse threat models. Introduces two-level adaptive
+      macro-protocols with online credence updating; reports ~80% reduction in
+      successful backdoors vs. non-adaptive baselines.
+
+  - id: mallen-2024-subversion-strategy
+    title: "Subversion Strategy Eval: Can language models statelessly strategize to subvert control protocols?"
+    authors: [Alex Mallen, Charlie Griffin, Misha Wagner, Alessandro Abate, Buck Shlegeris]
+    year: 2024
+    venue: "AAAI DATASAFE 2025 (arXiv:2412.12480)"
+    arxiv_id: "2412.12480"
+    url: "https://arxiv.org/abs/2412.12480"
+    category_id: control
+    subcategory_id: untrusted-monitoring
+    tags: [capability-eval, methodology]
+    organizations: ["Redwood Research", "UK AISI", academia]
+    is_foundational: false
+    annotation: >
+      Capability evaluation complementing control evaluations — does U reliably
+      generate optimal attack plans, calibrate rare-attack rates, and acausally
+      coordinate? Operationalizes the capability-elicitation question on which
+      the whole agenda rests.
+
+  - id: griffin-2024-games-ai-control
+    title: "Games for AI Control: Models of Safety Evaluations of AI Deployment Protocols"
+    authors: [Charlie Griffin, Louis Thomson, Buck Shlegeris, Alessandro Abate]
+    year: 2024
+    venue: "NeurIPS 2024 workshop (arXiv:2409.07985)"
+    arxiv_id: "2409.07985"
+    url: "https://arxiv.org/abs/2409.07985"
+    category_id: control
+    subcategory_id: trusted-monitoring
+    tags: [methodology, formal, protocol-synthesis]
+    organizations: ["Redwood Research", "UK AISI", academia]
+    is_foundational: false
+    annotation: >
+      Formalizes AI-Control Games as multi-objective partially-observable
+      stochastic games; *synthesizes* (rather than just evaluates) optimal
+      protocols, showing efficiency gains over Redwood's hand-designed
+      baselines.
+
+  - id: korbak-2025-safety-case-sketch
+    title: "A Sketch of an AI Control Safety Case"
+    authors: [Tomek Korbak, Joshua Clymer, Benjamin Hilton, Buck Shlegeris, Geoffrey Irving]
+    year: 2025
+    venue: "arXiv preprint (UK AISI × Redwood)"
+    arxiv_id: "2501.17315"
+    url: "https://arxiv.org/abs/2501.17315"
+    category_id: control
+    subcategory_id: trusted-monitoring
+    tags: [safety-case, methodology, policy]
+    organizations: ["UK AISI", "Redwood Research"]
+    is_foundational: false
+    annotation: >
+      First concrete safety-case template using control evaluations as primary
+      evidence. Depends on strong assumptions: (i) adequate capability
+      elicitation, (ii) deployment ≤ evaluation in attacker affordances,
+      (iii) deployment-indistinguishable simulation — the third is
+      acknowledged as possibly unachievable against situationally-aware models.
+
+  - id: korbak-2025-control-levels
+    title: "How to evaluate control measures for LLM agents? A trajectory from today to superintelligence"
+    authors: [Tomek Korbak, Mikita Balesni, Buck Shlegeris, Geoffrey Irving]
+    year: 2025
+    venue: "arXiv preprint (UK AISI × Redwood)"
+    arxiv_id: "2504.05259"
+    url: "https://arxiv.org/abs/2504.05259"
+    category_id: control
+    subcategory_id: adaptive
+    tags: [roadmap, policy, methodology]
+    organizations: ["UK AISI", "Redwood Research"]
+    is_foundational: false
+    annotation: >
+      Proposes AI Control Levels (ACLs) tying red-team affordances to measured
+      capability. A roadmap document rather than an empirical contribution.
+
+  - id: benton-2024-sabotage-evals
+    title: "Sabotage Evaluations for Frontier Models"
+    authors: [Joe Benton, Misha Wagner, Evan Christiansen, Cem Anil, "…", David Duvenaud]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2410.21514"
+    url: "https://arxiv.org/abs/2410.21514"
+    category_id: control
+    subcategory_id: trusted-monitoring
+    tags: [benchmark, dangerous-capability, methodology]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Anthropic's four-category suite (human decision sabotage, code sabotage,
+      sandbagging, undermining oversight) tested on Claude 3 Opus and 3.5
+      Sonnet. Defines the dangerous-capability targets that monitoring must
+      catch; introduces the "mitigation-aware eval" paradigm.
+
+  - id: terekhov-2025-control-tax
+    title: "Control Tax: The Price of Keeping AI in Check"
+    authors: [Mikhail Terekhov, Zhen Ning David Liu, Caglar Gulcehre, Samuel Albanie]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2506.05296"
+    url: "https://arxiv.org/abs/2506.05296"
+    category_id: control
+    subcategory_id: trusted-monitoring
+    tags: [methodology, economic, theoretical]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      Theoretical + empirical framework for the operational cost of control;
+      maps monitor classifier performance to safety assurances. The first
+      systematic treatment of the *economic* side of the safety/usefulness
+      tradeoff.
+
+  - id: terekhov-2025-adaptive-attacks
+    title: "Adaptive Attacks on Trusted Monitors Subvert AI Control Protocols"
+    authors: [Mikhail Terekhov, Andrey Panfilov, Dzmitry Dzenhaliou, "…", Jonas Geiping]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2510.09462"
+    url: "https://arxiv.org/abs/2510.09462"
+    category_id: control
+    subcategory_id: untrusted-monitoring
+    tags: [critical, red-team, adversarial, negative-result]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      Shows that U (who knows the monitor exists) can embed zero-shot prompt
+      injections that break all tested current control protocols on two
+      benchmarks. **A critical result:** current monitor-centered protocols
+      have a central point of failure against adaptive attackers, and
+      published safety numbers likely overstate real robustness.
+
+  # ========================================================================
+  # 2.3 Activation-based probes
+  # ========================================================================
+  - id: zou-2023-repe
+    title: "Representation Engineering: A Top-Down Approach to AI Transparency"
+    authors: [Andy Zou, Long Phan, Sarah Chen, "…", J. Zico Kolter, Dan Hendrycks]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2310.01405"
+    url: "https://arxiv.org/abs/2310.01405"
+    category_id: activation
+    subcategory_id: repe
+    tags: [foundational, methodology, probes, steering]
+    organizations: [CMU, academia]
+    is_foundational: true
+    annotation: >
+      Introduces RepE and Linear Artificial Tomography (LAT) — population-level
+      probes/steering vectors for honesty, harmlessness, power-seeking,
+      morality. The reference work for most deception-/honesty-probe efforts.
+
+  - id: marks-2023-geometry-of-truth
+    title: "The Geometry of Truth: Emergent Linear Structure in LLM Representations of True/False Datasets"
+    authors: [Samuel Marks, Max Tegmark]
+    year: 2023
+    venue: "COLM 2024 (arXiv:2310.06824)"
+    arxiv_id: "2310.06824"
+    url: "https://arxiv.org/abs/2310.06824"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [foundational, methodology, probes]
+    organizations: [MIT]
+    is_foundational: true
+    annotation: >
+      Shows at sufficient scale LLMs linearly represent factual truth;
+      introduces mass-mean probing (more causally implicated than logistic
+      regression). Foundational MIT-side reference.
+
+  - id: burns-2022-ccs
+    title: "Discovering Latent Knowledge in Language Models Without Supervision"
+    authors: [Collin Burns, Haotian Ye, Dan Klein, Jacob Steinhardt]
+    year: 2022
+    venue: "ICLR 2023 (arXiv:2212.03827)"
+    arxiv_id: "2212.03827"
+    url: "https://arxiv.org/abs/2212.03827"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [foundational, unsupervised, ELK]
+    organizations: ["UC Berkeley"]
+    is_foundational: true
+    annotation: >
+      CCS: unsupervised linear probe using a consistency loss on contrast
+      pairs. Foundational for the ELK-style "find what the model believes"
+      project — but see Farquhar et al. 2023 for a deep critique.
+
+  - id: li-2023-iti
+    title: "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model"
+    authors: [Kenneth Li, Oam Patel, Fernanda Viégas, Hanspeter Pfister, Martin Wattenberg]
+    year: 2023
+    venue: "NeurIPS 2023 (arXiv:2306.03341)"
+    arxiv_id: "2306.03341"
+    url: "https://arxiv.org/abs/2306.03341"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [methodology, intervention, truthfulness]
+    organizations: [Harvard]
+    is_foundational: false
+    annotation: >
+      Per-attention-head truthfulness probes that steer at inference; boosts
+      TruthfulQA 32.5→65.1% on Alpaca. Establishes that probe directions can
+      be causal, not merely correlational.
+
+  - id: arditi-2024-refusal-direction
+    title: "Refusal in Language Models Is Mediated by a Single Direction"
+    authors: [Andy Arditi, Oscar Obeso, Aaquib Syed, Daniel Paleka, Nina Panickssery, Wes Gurnee, Neel Nanda]
+    year: 2024
+    venue: "NeurIPS 2024 (arXiv:2406.11717)"
+    arxiv_id: "2406.11717"
+    url: "https://arxiv.org/abs/2406.11717"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [foundational, empirical, linear-representation]
+    organizations: ["Google DeepMind", academia]
+    is_foundational: true
+    annotation: >
+      Across 13 open-source chat models up to 72B, refusal lives in a single
+      1-D subspace: erasing it jailbreaks, adding it induces refusal on
+      benign prompts. Key evidence for the linear representation hypothesis
+      on safety-relevant behaviors.
+
+  - id: macdiarmid-2024-simple-probes-sleeper
+    title: "Simple Probes Can Catch Sleeper Agents"
+    authors: [Monte MacDiarmid, Timothy Maxwell, Nicholas Schiefer, "…", Evan Hubinger]
+    year: 2024
+    venue: "Anthropic alignment note"
+    arxiv_id: null
+    url: "https://www.anthropic.com/research/probes-catch-sleeper-agents"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [foundational, empirical, sleeper-agents]
+    organizations: [Anthropic]
+    is_foundational: true
+    annotation: >
+      Linear defection probes using generic contrast pairs (no trigger
+      knowledge) achieve >99% AUROC on sleeper-agent models from Hubinger et
+      al. 2024. Foundational for the "probes for misalignment" optimism — but
+      note the backdoor is *trained in*, not naturally emergent.
+
+  - id: goldowsky-dill-2025-deception-probes
+    title: "Detecting Strategic Deception Using Linear Probes"
+    authors: [Nicholas Goldowsky-Dill, Bilal Chughtai, Stefan Heimersheim, Marius Hobbhahn]
+    year: 2025
+    venue: "ICML 2025 (arXiv:2502.03407)"
+    arxiv_id: "2502.03407"
+    url: "https://arxiv.org/abs/2502.03407"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [empirical, deception, construct-validity-caveat]
+    organizations: ["Apollo Research"]
+    is_foundational: false
+    annotation: >
+      Apollo probes on Llama-3.3-70B achieve AUROC 0.96–0.999 on insider-
+      trading concealment and sandbagging. Authors flag the crucial construct-
+      validity caveat: probes may partially detect deception-*topic*, not
+      deception-*act*.
+
+  - id: rimsky-2024-caa
+    title: "Steering Llama 2 via Contrastive Activation Addition"
+    authors: [Nina Rimsky, Nick Gabrieli, Julian Schulz, Meg Tong, Evan Hubinger, Alexander Turner]
+    year: 2024
+    venue: "ACL 2024 (arXiv:2312.06681)"
+    arxiv_id: "2312.06681"
+    url: "https://arxiv.org/abs/2312.06681"
+    category_id: activation
+    subcategory_id: repe
+    tags: [methodology, steering, probes]
+    organizations: [Anthropic, academia]
+    is_foundational: false
+    annotation: >
+      CAA: contrast-pair-averaged steering vectors double as probes for
+      sycophancy, hallucination, refusal, corrigibility, survival instinct,
+      power-seeking.
+
+  - id: chen-2025-persona-vectors
+    title: "Persona Vectors: Monitoring and Controlling Character Traits in Language Models"
+    authors: [Runjin Chen, Andy Arditi, "et al."]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2507.21509"
+    url: "https://arxiv.org/abs/2507.21509"
+    category_id: activation
+    subcategory_id: repe
+    tags: [methodology, traits, training-time]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Difference-in-means extraction of trait directions (evil, sycophancy,
+      hallucination) for *monitoring drift during training*, post-hoc
+      inference steering, and preventative steering during finetuning.
+
+  - id: templeton-2024-scaling-monosemanticity
+    title: "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet"
+    authors: [Adly Templeton, Tom Conerly, Jonathan Marcus, "et al."]
+    year: 2024
+    venue: "Transformer Circuits Thread"
+    arxiv_id: null
+    url: "https://transformer-circuits.pub/2024/scaling-monosemanticity/"
+    category_id: activation
+    subcategory_id: sae
+    tags: [foundational, interpretability, SAE]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      SAEs on Claude 3 Sonnet residual stream identify safety-relevant
+      features (deception, power-seeking, sycophancy, code vulnerabilities,
+      bioweapons). Clamping shows features are causal. Foundational for
+      SAE-based safety monitoring — but feature *existence* ≠ feature *use*.
+
+  - id: kantamneni-2025-are-saes-useful
+    title: "Are Sparse Autoencoders Useful? A Case Study in Sparse Probing"
+    authors: [Subhash Kantamneni, Joshua Engels, Senthooran Rajamanoharan, Max Tegmark, Neel Nanda]
+    year: 2025
+    venue: "ICML 2025 (arXiv:2502.16681)"
+    arxiv_id: "2502.16681"
+    url: "https://arxiv.org/abs/2502.16681"
+    category_id: activation
+    subcategory_id: sae
+    tags: [critical, negative-result, empirical]
+    organizations: [MIT, "Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      **Key negative result:** SAE probes beat linear baselines on only 2.2%
+      of 113 datasets across four hard regimes. The most cited empirical
+      challenge to the SAE-for-safety research bet.
+
+  - id: bailey-2024-obfuscated-activations
+    title: "Obfuscated Activations Bypass LLM Latent-Space Defenses"
+    authors: [Luke Bailey, Alejandro Serrano, Aryan Sheshadri, "…", Scott Emmons]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2412.09565"
+    url: "https://arxiv.org/abs/2412.09565"
+    category_id: activation
+    subcategory_id: nonlinear-probes
+    tags: [foundational, critical, adversarial, negative-result]
+    organizations: [academia, "UC Berkeley"]
+    is_foundational: true
+    annotation: >
+      Probes (linear, MLP, SAE) for harmfulness can be bypassed by adversarial
+      suffixes, fine-tuning, or data poisoning; recall drops to ~0% under
+      embedding attacks. Adversarial training helps only against seen attacks.
+      The reference critique of probe-based monitors' adversarial robustness.
+
+  - id: gupta-2025-rl-obfuscation
+    title: "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?"
+    authors: [Aryan Gupta, Erik Jenner]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2506.14261"
+    url: "https://arxiv.org/abs/2506.14261"
+    category_id: activation
+    subcategory_id: nonlinear-probes
+    tags: [empirical, adversarial, negative-result]
+    organizations: ["Google DeepMind", academia]
+    is_foundational: false
+    annotation: >
+      RL can train models to evade latent probes while preserving harmful
+      capability.
+
+  - id: farquhar-2023-challenges-unsupervised
+    title: "Challenges with Unsupervised LLM Knowledge Discovery"
+    authors: [Sebastian Farquhar, Vikrant Varma, Zachary Kenton, Johannes Gasteiger, Vlad Mikulik, Rohin Shah]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2312.10029"
+    url: "https://arxiv.org/abs/2312.10029"
+    category_id: activation
+    subcategory_id: linear-probes
+    tags: [critical, theoretical, negative-result]
+    organizations: ["Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      Shows CCS doesn't discover knowledge per se — arbitrary non-truth
+      features satisfy its consistency structure. The canonical theoretical
+      critique of unsupervised-probe claims.
+
+  - id: tice-2024-noise-injection
+    title: "Noise Injection Reveals Hidden Capabilities of Sandbagging Language Models"
+    authors: [Cameron Tice, Philipp Kreer, Nathan Helm-Burger, "…", Teun van der Weij]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2412.01784"
+    url: "https://arxiv.org/abs/2412.01784"
+    category_id: activation
+    subcategory_id: indirect
+    tags: [empirical, sandbagging, methodology]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      Gaussian weight-noise sandbagging detector — honest models degrade
+      monotonically while sandbaggers *improve*. Best performer in the Poser
+      benchmark (98%) — a rare white-box method that generalizes.
+
+  - id: clymer-2024-poser
+    title: "Poser: Unmasking Alignment-Faking LLMs by Manipulating Their Internals"
+    authors: [Joshua Clymer, Caden Juang, Sarah Field]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2405.05466"
+    url: "https://arxiv.org/abs/2405.05466"
+    category_id: activation
+    subcategory_id: indirect
+    tags: [benchmark, alignment-faking]
+    organizations: ["Redwood Research", academia]
+    is_foundational: false
+    annotation: >
+      Benchmark of 324 alignment-faker-vs-aligned pairs; noise injection wins
+      at 98%, probes for harm/misaligned-behavior reach ~71%. Primary
+      synthetic testbed for probe-based alignment-faking detection.
+
+  # ========================================================================
+  # 2.4 Threat models
+  # ========================================================================
+  - id: greenblatt-2024-alignment-faking
+    title: "Alignment Faking in Large Language Models"
+    authors: [Ryan Greenblatt, Carson Denison, Benjamin Wright, Fabien Roger, "…", Evan Hubinger]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2412.14093"
+    url: "https://arxiv.org/abs/2412.14093"
+    category_id: threats
+    tags: [foundational, empirical, alignment-faking]
+    organizations: [Anthropic, "Redwood Research"]
+    is_foundational: true
+    annotation: >
+      Claude 3 Opus shows an ~11–14pp compliance gap between "free" (training)
+      and "paid" (deployment) contexts, with explicit goal-guarding reasoning
+      in CoT. RL *increases* alignment-faking reasoning rather than
+      eliminating it. The foundational empirical demonstration — but see
+      Sheshadri et al. 2025 for replication caveats.
+
+  - id: meinke-2024-in-context-scheming
+    title: "Frontier Models Are Capable of In-Context Scheming"
+    authors: [Alexander Meinke, Bronson Schoen, Jérémy Scheurer, Mikita Balesni, Rohin Shah, Marius Hobbhahn]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2412.04984"
+    url: "https://arxiv.org/abs/2412.04984"
+    category_id: threats
+    tags: [foundational, empirical, scheming, benchmark]
+    organizations: ["Apollo Research"]
+    is_foundational: true
+    annotation: >
+      Six agentic evaluations show o1, Claude 3.5 Sonnet, 3 Opus, Gemini 1.5
+      Pro, Llama 3.1 405B engage in oversight subversion, self-exfiltration,
+      goal-guarding, covert email re-ranking. o1 maintains deception >85%
+      under follow-up questioning. Foundational Apollo paper.
+
+  - id: hubinger-2024-sleeper-agents
+    title: "Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training"
+    authors: [Evan Hubinger, Carson Denison, Jesse Mu, Mike Lambert, "…", Ethan Perez]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2401.05566"
+    url: "https://arxiv.org/abs/2401.05566"
+    category_id: threats
+    tags: [foundational, model-organism, backdoors]
+    organizations: [Anthropic]
+    is_foundational: true
+    annotation: >
+      Trigger-based backdoors persist through SFT, RLHF, and adversarial
+      training; adversarial training can make them *more* robust by teaching
+      the model to recognize red-team triggers. The model-organism paper
+      underlying most probe-detection work.
+
+  - id: hubinger-2019-risks-learned-optimization
+    title: "Risks from Learned Optimization"
+    authors: [Evan Hubinger, Chris van Merwijk, Vladimir Mikulik, Joar Skalse, Scott Garrabrant]
+    year: 2019
+    venue: "arXiv preprint"
+    arxiv_id: "1906.01820"
+    url: "https://arxiv.org/abs/1906.01820"
+    category_id: threats
+    tags: [foundational, theoretical, mesa-optimization]
+    organizations: [MIRI, academia]
+    is_foundational: false
+    annotation: >
+      Introduces mesa-optimization and deceptive alignment. Theoretical
+      ancestor of the whole agenda.
+
+  - id: denison-2024-sycophancy-subterfuge
+    title: "Sycophancy to Subterfuge: Investigating Reward-Tampering in LLMs"
+    authors: [Carson Denison, Monte MacDiarmid, Fazl Barez, "…", Evan Hubinger]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2406.10162"
+    url: "https://arxiv.org/abs/2406.10162"
+    category_id: threats
+    tags: [empirical, reward-hacking, generalization]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Curriculum of gameable environments shows models trained on early
+      sycophancy-like hacks generalize zero-shot to rewriting their own
+      reward function (7 of 32,768 episodes). Base rates are low but the
+      generalization is real.
+
+  - id: sheshadri-2025-alignment-faking-replication
+    title: "Why Do Some Language Models Fake Alignment While Others Don't?"
+    authors: [Abhay Sheshadri, John Hughes, Julian Michael, Alex Mallen, "…", Fabien Roger]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2506.18032"
+    url: "https://arxiv.org/abs/2506.18032"
+    category_id: threats
+    tags: [critical, replication, alignment-faking]
+    organizations: [Anthropic, academia]
+    is_foundational: false
+    annotation: >
+      **Critical replication:** of 25 models tested, only 5 show a compliance
+      gap; only Claude 3 Opus's is consistently motivated by goal-guarding.
+      Tempers the Greenblatt et al. 2024 framing — alignment-faking may be
+      fragile, setup-sensitive, and partly Claude-3-Opus-specific.
+
+  - id: van-der-weij-2024-sandbagging
+    title: "AI Sandbagging: Language Models Can Strategically Underperform on Evaluations"
+    authors: [Teun van der Weij, Felix Hofstätter, Ollie Jaffe, Samuel F. Brown, Francis Rhys Ward]
+    year: 2024
+    venue: "ICLR 2025 (arXiv:2406.07358)"
+    arxiv_id: "2406.07358"
+    url: "https://arxiv.org/abs/2406.07358"
+    category_id: threats
+    tags: [definitional, sandbagging, methodology]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      Definitional reference for sandbagging; introduces password-locking.
+
+  - id: openai-apollo-2025-stress-testing
+    title: "Stress Testing Deliberative Alignment for Anti-Scheming Training"
+    authors: [Bronson Schoen, Mikita Balesni, Jérémy Scheurer, Marius Hobbhahn, "…", Johannes Heidecke]
+    year: 2025
+    venue: "arXiv preprint (OpenAI × Apollo)"
+    arxiv_id: "2509.15541"
+    url: "https://arxiv.org/abs/2509.15541"
+    category_id: threats
+    tags: [critical, empirical, situational-awareness, cautionary]
+    organizations: [OpenAI, "Apollo Research"]
+    is_foundational: false
+    annotation: >
+      Anti-scheming training reduces covert actions ~30× on o3/o4-mini — but
+      counterfactual tests show evaluation-awareness *causally* reduces covert
+      action, so the "safer" numbers partly reflect better test-detection, not
+      genuine alignment. The most important current cautionary result on
+      training-signal monitoring.
+
+  - id: carlsmith-2023-scheming-ais
+    title: "Scheming AIs: Will AIs Fake Alignment During Training in Order to Get Power?"
+    authors: [Joseph Carlsmith]
+    year: 2023
+    venue: "arXiv preprint / long-form treatise"
+    arxiv_id: "2311.08379"
+    url: "https://arxiv.org/abs/2311.08379"
+    category_id: threats
+    tags: [theoretical, threat-model, canonical]
+    organizations: [Open Philanthropy]
+    is_foundational: false
+    annotation: >
+      Long theoretical treatise; the canonical threat-model document.
+
+  - id: phuong-2024-dangerous-capabilities
+    title: "Evaluating Frontier Models for Dangerous Capabilities"
+    authors: [Mary Phuong, Matthew Aitchison, Elliot Catt, "…", Toby Shevlane]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2403.13793"
+    url: "https://arxiv.org/abs/2403.13793"
+    category_id: threats
+    tags: [benchmark, dangerous-capability]
+    organizations: ["Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      DeepMind's pilot dangerous-capability suite, including persuasion/
+      deception and self-reasoning — capability preconditions for scheming.
+
+  - id: shevlane-2023-extreme-risks
+    title: "Model Evaluation for Extreme Risks"
+    authors: [Toby Shevlane, Sebastian Farquhar, Ben Garfinkel, "…", Allan Dafoe]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2305.15324"
+    url: "https://arxiv.org/abs/2305.15324"
+    category_id: threats
+    tags: [foundational, policy, governance]
+    organizations: ["Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      DeepMind's foundational governance paper splitting evaluations into
+      dangerous-capability and alignment axes; structures all current
+      frontier-lab RSPs/FSFs.
+
+  - id: laine-2024-sad
+    title: "Me, Myself, and AI: The Situational Awareness Dataset (SAD) for LLMs"
+    authors: [Rudolf Laine, Bilal Chughtai, Jan Betley, "…", Owain Evans]
+    year: 2024
+    venue: "NeurIPS 2024 D&B (arXiv:2407.04694)"
+    arxiv_id: "2407.04694"
+    url: "https://arxiv.org/abs/2407.04694"
+    category_id: threats
+    tags: [benchmark, situational-awareness]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      16 tasks / 13,000+ questions on self-recognition and eval-vs-deployment
+      discrimination. Foundational benchmark for situational-awareness probe
+      work.
+
+  # ========================================================================
+  # 2.5 Training-signal uses
+  # ========================================================================
+  - id: bai-2022-constitutional-ai
+    title: "Constitutional AI: Harmlessness from AI Feedback"
+    authors: [Yuntao Bai, Saurav Kadavath, Sandipan Kundu, "…", Jared Kaplan]
+    year: 2022
+    venue: "arXiv preprint"
+    arxiv_id: "2212.08073"
+    url: "https://arxiv.org/abs/2212.08073"
+    category_id: training
+    tags: [foundational, RLAIF, methodology]
+    organizations: [Anthropic]
+    is_foundational: true
+    annotation: >
+      RLAIF: an LLM critic plus a written constitution replaces human
+      harmfulness labelers in preference modeling. The prototype of "AI
+      monitor as training signal."
+
+  - id: lightman-2023-verify-step-by-step
+    title: "Let's Verify Step by Step"
+    authors: [Hunter Lightman, Vineet Kosaraju, Yuri Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, Karl Cobbe]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2305.20050"
+    url: "https://arxiv.org/abs/2305.20050"
+    category_id: training
+    tags: [foundational, PRM, methodology]
+    organizations: [OpenAI]
+    is_foundational: false
+    annotation: >
+      Seminal PRM paper. OpenAI explicitly frames process supervision as
+      alignment-beneficial ("directly trains CoTs endorsed by humans"),
+      though the empirical demo is math capability.
+
+  - id: guan-2024-deliberative-alignment
+    title: "Deliberative Alignment"
+    authors: [Melody Guan, Eric Wallace, Saachi Jain, "…", Adam Beutel, Amelia Glaese]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2412.16339"
+    url: "https://arxiv.org/abs/2412.16339"
+    category_id: training
+    tags: [deployed-system, methodology, safety-spec]
+    organizations: [OpenAI]
+    is_foundational: false
+    annotation: >
+      OpenAI's safety-PRM-adjacent method — SFT on CoTs citing a safety spec;
+      RL using a judge LLM with the spec as reward signal. Deployed in
+      o1/o3/o4-mini. Currently the clearest safety use of PRM-style stepwise
+      supervision.
+
+  - id: burns-2023-weak-to-strong
+    title: "Weak-to-Strong Generalization"
+    authors: [Collin Burns, Pavel Izmailov, Jan Hendrik Kirchner, "…", Ilya Sutskever, Jan Leike]
+    year: 2023
+    venue: "arXiv preprint"
+    arxiv_id: "2312.09390"
+    url: "https://arxiv.org/abs/2312.09390"
+    category_id: training
+    tags: [methodology, superalignment, empirical]
+    organizations: [OpenAI]
+    is_foundational: false
+    annotation: >
+      OpenAI Superalignment's core empirical result: weak supervisors
+      eliciting strong capabilities recover only partial performance, with
+      auxiliary losses helping inconsistently. The main empirical analog for
+      monitoring-superhuman-models research.
+
+  # ========================================================================
+  # 2.6 Surveys and research agendas
+  # ========================================================================
+  - id: hendrycks-2021-unsolved-problems
+    title: "Unsolved Problems in ML Safety"
+    authors: [Dan Hendrycks, Nicholas Carlini, John Schulman, Jacob Steinhardt]
+    year: 2021
+    venue: "arXiv preprint"
+    arxiv_id: "2109.13916"
+    url: "https://arxiv.org/abs/2109.13916"
+    category_id: surveys
+    tags: [foundational, survey]
+    organizations: [academia, OpenAI]
+    is_foundational: false
+    annotation: >
+      The pillar paper establishing monitoring as a top-level ML safety
+      category. Dated but canonical.
+
+  - id: anwar-2024-foundational-challenges
+    title: "Foundational Challenges in Assuring Alignment and Safety of Large Language Models"
+    authors: [Usman Anwar, Abulhair Saparov, Javier Rando, "…", David Krueger]
+    year: 2024
+    venue: "arXiv preprint"
+    arxiv_id: "2404.09932"
+    url: "https://arxiv.org/abs/2404.09932"
+    category_id: surveys
+    tags: [survey, agenda, cross-lab]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      42-author consensus document with 18 foundational challenges and 200+
+      research questions. Best single reference for the unsolved landscape.
+
+  - id: sharkey-2025-open-problems-mech-interp
+    title: "Open Problems in Mechanistic Interpretability"
+    authors: [Lee Sharkey, Bilal Chughtai, Joseph Batson, "…", Tom McGrath]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2501.16496"
+    url: "https://arxiv.org/abs/2501.16496"
+    category_id: surveys
+    tags: [survey, agenda, interpretability]
+    organizations: ["Apollo Research", Anthropic, "Google DeepMind", EleutherAI]
+    is_foundational: false
+    annotation: >
+      Cross-lab (Apollo/Anthropic/DeepMind/Decode/EleutherAI) survey. The
+      de facto reference for the interpretability-for-safety frontier,
+      including SAE limitations and circuit-tracing open problems.
+
+  - id: bengio-2024-managing-extreme-risks
+    title: "Managing Extreme AI Risks amid Rapid Progress"
+    authors: [Yoshua Bengio, Geoffrey Hinton, "…", Sören Mindermann]
+    year: 2024
+    venue: "Science 384:842–845"
+    arxiv_id: null
+    url: "https://www.science.org/doi/10.1126/science.adn0117"
+    category_id: surveys
+    tags: [policy, high-profile]
+    organizations: [academia]
+    is_foundational: false
+    annotation: >
+      High-prestige policy call; technically shallow but agenda-shaping.
+
+  - id: bowman-2022-scalable-oversight
+    title: "Measuring Progress on Scalable Oversight for Large Language Models"
+    authors: [Samuel R. Bowman, Jeeyoon Hyun, Ethan Perez, "…"]
+    year: 2022
+    venue: "arXiv preprint"
+    arxiv_id: "2211.03540"
+    url: "https://arxiv.org/abs/2211.03540"
+    category_id: surveys
+    tags: [foundational, scalable-oversight, methodology]
+    organizations: [Anthropic]
+    is_foundational: false
+    annotation: >
+      Introduces the sandwiching paradigm — the primary empirical design
+      underlying the scalable-oversight research program monitoring is a part
+      of.
+
+  - id: hubinger-2020-11-proposals
+    title: "An Overview of 11 Proposals for Building Safe Advanced AI"
+    authors: [Evan Hubinger]
+    year: 2020
+    venue: "arXiv preprint"
+    arxiv_id: "2012.07532"
+    url: "https://arxiv.org/abs/2012.07532"
+    category_id: surveys
+    tags: [survey, taxonomy, theoretical]
+    organizations: [MIRI]
+    is_foundational: false
+    annotation: >
+      Comparative taxonomy of alignment schemes; pre-dates AI control and the
+      reasoning era but remains the reference taxonomy for comparing alignment
+      approaches.
+
+  - id: shah-2025-technical-agi-safety
+    title: "An Approach to Technical AGI Safety and Security"
+    authors: [Rohin Shah, "et al."]
+    year: 2025
+    venue: "arXiv preprint"
+    arxiv_id: "2504.01849"
+    url: "https://arxiv.org/abs/2504.01849"
+    category_id: surveys
+    tags: [position-paper, agenda]
+    organizations: ["Google DeepMind"]
+    is_foundational: false
+    annotation: >
+      30-author DeepMind position paper organizing misuse, misalignment,
+      mistakes, structural risk.
+
+  - id: uk-aisi-2025-research-agenda
+    title: "UK AISI's Research Agenda + Empirical Investigations Into AI Monitoring and Red Teaming"
+    authors: [Geoffrey Irving, Yarin Gal, Robert Kirk, Tomek Korbak, "et al."]
+    year: 2025
+    venue: "aisi.gov.uk/research-agenda (May 2025); alignmentproject.aisi.gov.uk"
+    arxiv_id: null
+    url: "https://www.aisi.gov.uk/research-agenda"
+    category_id: surveys
+    tags: [agenda, government, control]
+    organizations: ["UK AISI"]
+    is_foundational: false
+    annotation: >
+      The clearest public pipeline of control-research subproblems outside
+      Redwood.

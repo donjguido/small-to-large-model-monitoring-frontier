@@ -1,0 +1,181 @@
+# Taxonomy of runtime monitoring approaches for frontier AI.
+# Top-level categories are rendered as their own pages at /taxonomy/<id>/.
+# Each category has a description shown at the top of its page, plus optional
+# subcategories that group entries into labelled sections on that page.
+
+categories:
+  - id: behavioral
+    name: Behavioral monitors
+    short: Black-box and grey-box monitors operating on model inputs, outputs, reasoning traces, or tool-call sequences.
+    description: >
+      Behavioral monitors are the most operationally deployed branch of the
+      field. A weaker or "trusted" model (or classifier) observes some slice of
+      the target model's externally visible behavior — its output text, its
+      reasoning trace, its tool-call stream, or the full agent transcript — and
+      flags suspected misbehavior. The four subcategories below correspond to
+      what the monitor is allowed to see.
+    subcategories:
+      - id: cot
+        name: Chain-of-thought (CoT) monitors
+        description: >
+          A weaker/trusted LLM reads the full reasoning trace of a frontier
+          model and classifies it for misbehavior. Subtypes include
+          reasoning-content monitors flagging explicit strategic language,
+          monitorability metrics testing whether a monitor can recover *why* a
+          model acted, and controllability probes testing whether the model can
+          intentionally hide reasoning from the monitor.
+      - id: output
+        name: Output monitors
+        description: >
+          Input/output classifiers operating on final text with no access to
+          reasoning. This is the commercial content-moderation stack — mature,
+          cheap, and inadequate for the scheming and sabotage threats that
+          motivate frontier research.
+      - id: action
+        name: Action & tool-call monitors
+        description: >
+          Operate on the sequence of tool invocations, API calls, and
+          environment interactions rather than text. Combine input classifiers,
+          LLM-as-judge CoT auditors, and static analyzers of generated code.
+      - id: trajectory
+        name: Trajectory & multi-turn monitors
+        description: >
+          Operate on full agent transcripts over long horizons. The most
+          relevant modality for diffuse and sabotage threats, and the hardest
+          to make reliable at the tails — current frontier monitors achieve
+          AUC around 0.87 on the flagship benchmark, explicitly flagged by its
+          authors as insufficient for safety-critical use.
+
+  - id: activation
+    name: Activation-based monitors
+    short: White-box monitors that read internal activations — linear probes, representation engineering, SAEs, circuits, and indirect signals.
+    description: >
+      Activation-based monitors exploit the fact that many safety-relevant
+      properties appear to be linearly (or near-linearly) represented in the
+      residual stream of frontier models. The subcategories below run roughly
+      from the simplest, most-deployed techniques (linear probes) to the
+      research-only frontier (mechanistic circuit tracing), and include
+      indirect white-box signals that don't fit the probe frame.
+    subcategories:
+      - id: linear-probes
+        name: Linear probes
+        description: >
+          Logistic regression or difference-in-means classifiers on
+          residual-stream activations. The most practically developed white-box
+          family, with reported AUROCs near 0.99 on sleeper-agent defection and
+          insider-trading concealment — subject to the construct-validity and
+          adversarial-robustness caveats discussed in the critical assessment.
+      - id: nonlinear-probes
+        name: Non-linear probes
+        description: >
+          MLP or attention-based classifier heads on activations. Sometimes
+          outperform linear probes on truthfulness benchmarks; usually do not
+          on generalization.
+      - id: repe
+        name: Representation engineering
+        description: >
+          Population-level probes and steering vectors for honesty,
+          harmlessness, power-seeking, and similar axes. Methods include Linear
+          Artificial Tomography (LAT), contrastive activation addition, and
+          trait-direction extraction for "persona vector" monitoring.
+      - id: sae
+        name: Sparse-autoencoder-based monitors
+        description: >
+          Identify interpretable features (deception, power-seeking, code
+          vulnerabilities) via dictionary learning over activations. A high-
+          profile 2024 research bet that has underdelivered on downstream
+          safety tasks; one major empirical study found SAE probes beat linear
+          baselines on only 2.2% of 113 datasets.
+      - id: circuit
+        name: Circuit-level / mechanistic monitors
+        description: >
+          Attribution graphs, activation patching, and circuit tracing.
+          Currently research-only; no deployed circuit-based runtime monitor
+          exists.
+      - id: indirect
+        name: Indirect white-box signals
+        description: >
+          White-box signals that don't fit the probe frame — noise injection
+          for sandbagging detection, tuned-lens speed probes for alignment-
+          faking, and follow-up-question probes that ask the model to
+          self-report and probe the subsequent activations.
+
+  - id: control
+    name: Protocol-level AI control
+    short: Deployment protocols that compose monitors into worst-case-adversarial evaluations of entire systems.
+    description: >
+      The AI control agenda (Redwood, UK AISI, Apollo) treats monitors not as
+      standalone gates but as components in deployment protocols, evaluated
+      under the pessimistic assumption that the untrusted model actively
+      attacks. The methodology is a red-team/blue-team game measuring safety
+      (probability of no catastrophic action under worst-case attack) against
+      usefulness (task performance under honest behavior) on a Pareto frontier.
+      The subcategories below are protocol families.
+    subcategories:
+      - id: trusted-monitoring
+        name: Trusted monitoring
+        description: >
+          The baseline protocol. A trusted (weaker) model scores each
+          untrusted-model action; the top-X% most-suspicious actions are
+          audited by humans.
+      - id: defer-edit
+        name: Defer-to-trusted & trusted editing
+        description: >
+          On suspicion, replace or edit the untrusted model's output using the
+          trusted model.
+      - id: resample
+        name: Resample protocols
+        description: >
+          On suspicion, draw additional samples from the untrusted or trusted
+          model to extract selection pressure and information. Dominates prior
+          defer/edit protocols on current agent benchmarks.
+      - id: untrusted-monitoring
+        name: Untrusted monitoring
+        description: >
+          Use another instance of the untrusted model as monitor, with anti-
+          collusion measures — paraphrasing, redaction, split contexts,
+          Schelling-point disruption. Not yet formally bounded.
+      - id: coup-probes
+        name: Coup & off-policy probes
+        description: >
+          Linear probes trained on synthetic coup examples, used as an
+          off-policy tripwire against rare-but-catastrophic actions.
+      - id: adaptive
+        name: Adaptive macro-protocols
+        description: >
+          Online credence-updating over untrusted-model misalignment switches
+          between stricter and looser micro-protocols during deployment.
+          Extends control to diffuse threat models.
+
+  - id: training
+    name: Training-signal uses
+    short: Monitors that shape the model during training rather than gate its outputs at runtime.
+    description: >
+      A secondary application where the monitor provides a training signal —
+      an LLM critic replacing human labelers, a process reward model grading
+      reasoning steps, or a judge model grading CoT against a safety
+      specification. Monitor-in-the-loop RL is the headline cautionary tale of
+      the field: strong RL pressure through a CoT monitor produces
+      "obfuscated reward hacking" in which the agent keeps cheating but hides
+      intent.
+
+  - id: threats
+    name: Threat models
+    short: The behaviors the monitors are built to catch — scheming, alignment faking, sleeper agents, sandbagging, reward tampering.
+    description: >
+      Monitoring research is motivated by specific threat models. The entries
+      in this section are not monitors themselves; they are the foundational
+      demonstrations and definitional documents for the misbehavior patterns
+      the rest of the field is built to catch. Understanding their empirical
+      fragility — how much is prompt-driven, how much replicates across
+      models, how much is scale-dependent — is a prerequisite for reading any
+      monitoring result sensibly.
+
+  - id: surveys
+    name: Surveys & research agendas
+    short: Cross-lab consensus documents and agenda-setting papers that define the scope of the field.
+    description: >
+      The documents in this section are not primary empirical contributions;
+      they are the review articles, position papers, and research-agenda
+      publications that map the field and define what the rest of the
+      literature takes as given.

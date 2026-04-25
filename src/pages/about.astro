@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { LAST_REVIEWED, entries } from '../data';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const REPO_URL = 'https://github.com/donjguido/small-to-large-model-monitoring-frontier';
+const ISSUES_BASE = `${REPO_URL}/issues/new?template`;
+---
+<Layout title="About — Monitoring Frontier AI" description="Provenance, scope, maintenance, and how to contribute.">
+  <div class="breadcrumb"><a href={`${base}/`}>← Home</a></div>
+  <h1>About this review</h1>
+  <p><strong>Last reviewed:</strong> <span class="mono">{LAST_REVIEWED}</span> · <strong>{entries.length}</strong> bibliography entries</p>
+
+  <h2>What this is</h2>
+  <p>
+    I prepared this as a gift for a friend who wanted a way in to the
+    subfield, and I'm making it public in case it's useful to other people
+    in the same position. <strong>It is not a professional or hard-set
+    report.</strong>
+  </p>
+  <p>
+    The review was compiled by Claude (Anthropic's AI assistant) via a
+    structured deep-research task, framed and arranged by
+    <strong>donjguido</strong>. <strong>I did not independently review the
+    underlying sources</strong> — the annotations and the critical
+    assessment reflect Claude's read of the literature, not mine. It is
+    not peer-reviewed, not a multi-author consensus document, and should
+    be treated as a starting point for further reading rather than an
+    authoritative field summary. A single-curator AI-assisted compilation,
+    produced in hours rather than months.
+  </p>
+  <p>
+    <strong>Corrections welcome.</strong> If something is wrong, outdated,
+    or missing, please file an issue using one of the templates below — a
+    maintainer edits the YAML in <code>/data</code> and the site rebuilds.
+  </p>
+
+  <h2>Scope and honest limitations</h2>
+  <p>
+    This review covers the subfield of runtime monitoring of frontier AI
+    models — specifically the use of smaller or weaker models, and small
+    probes trained on internal activations, to flag misbehavior in larger
+    models. Annotations are concise, coverage prioritizes the most-cited
+    and most-recent work, and no attempt is made at systematic literature-
+    search completeness. Claims are sourced to the underlying papers; the
+    <a href={`${base}/critical-assessment/`}>critical assessment</a>
+    reflects the compiler's honest read, not a community consensus.
+  </p>
+
+  <h2>Maintenance</h2>
+  <p>
+    This site is maintained ad-hoc via GitHub issues. It was current as of
+    <span class="mono">{LAST_REVIEWED}</span> and may become stale. AI
+    safety research moves monthly — if you notice an outdated claim, a
+    broken link, a missing foundational paper, or a replication that
+    updates a cited result, please open an issue. Issues are the canonical
+    way to propose changes.
+  </p>
+
+  <h2>How to contribute</h2>
+  <p>Open an issue using one of the templates below:</p>
+  <ul>
+    <li><a href={`${ISSUES_BASE}=suggest-entry.yml`}>Suggest a new bibliography entry</a></li>
+    <li><a href={`${ISSUES_BASE}=flag-outdated.yml`}>Flag an outdated or superseded claim</a></li>
+    <li><a href={`${ISSUES_BASE}=report-broken-link.yml`}>Report a broken link</a></li>
+    <li><a href={`${ISSUES_BASE}=other.yml`}>Anything else</a></li>
+  </ul>
+
+  <h2>Data</h2>
+  <p>The bibliography and taxonomy live in YAML files in the repo. Machine-readable exports are also published as JSON:</p>
+  <ul>
+    <li><a href={`${base}/data/entries.json`}>entries.json</a> — every bibliography record</li>
+    <li><a href={`${base}/data/taxonomy.json`}>taxonomy.json</a> — the category tree</li>
+    <li>Source YAML: <a href={`${REPO_URL}/tree/main/data`}>data/ in the repo</a></li>
+  </ul>
+
+  <h2>How to cite</h2>
+  <pre style="background:#f4ece6; padding:0.8rem 1rem; font-size:0.82rem; overflow-x:auto; border-left:2px solid var(--accent);">donjguido. "Monitoring Frontier AI."
+Compiled with Claude (Anthropic). {LAST_REVIEWED}.
+URL: [deploy URL]</pre>
+  <p style="color:var(--fg-muted); font-size:0.92rem;">
+    When citing individual findings, cite the underlying paper directly —
+    this review is an orientation layer, not a primary source.
+  </p>
+
+  <h2>License</h2>
+  <p>
+    Text content is released under
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>;
+    site source code is MIT.
+  </p>
+
+  <h2>Source repository</h2>
+  <p>Site source, data files, and issue templates: <a href={REPO_URL}>donjguido/small-to-large-model-monitoring-frontier</a></p>
+</Layout>

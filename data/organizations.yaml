@@ -1,0 +1,209 @@
+# Ecosystem map from Section 3 of the source report.
+# Stored for V2 /ecosystem/ page. Not rendered in V1.
+
+organizations:
+  - id: anthropic
+    name: Anthropic
+    type: frontier-lab
+    description: >
+      Runs the broadest portfolio. The **Alignment Science** team (Jan Leike,
+      Evan Hubinger, Sam Bowman, Ethan Perez, Joe Benton, Samuel Marks, Carson
+      Denison, Fabien Roger) owns behavioral monitoring, model organisms
+      (sleeper agents, alignment faking), sabotage evaluations, and CoT
+      faithfulness. The **Cognitive Oversight** subteam under Samuel Marks is
+      specifically tasked with "supervising AI based on internal cognitive
+      processes rather than I/O behavior" — the clearest institutional
+      commitment to probe-based monitoring. The **Interpretability** team
+      (Chris Olah) provides SAE and circuit-tracing infrastructure. **Model
+      Welfare** (Kyle Fish) is tangential but increasingly overlapping with
+      introspection research. Flagship outputs span the 2024–2026 canon.
+
+  - id: openai
+    name: OpenAI
+    type: frontier-lab
+    description: >
+      In post-Superalignment rebuilding. The July 2023 Superalignment team
+      (Sutskever + Leike, promised 20% compute) dissolved May 2024 after both
+      leaders resigned; Leike, Schulman, Weng, and others migrated to
+      Anthropic. Current monitoring-relevant output comes from two distinct
+      teams: the **Deliberative Alignment** team (Guan, Wallace, Jain, Barak,
+      Glaese, Heidecke) doing spec-conditioned RL, and the **CoT Monitoring**
+      team (Baker, Huizinga, Gao, Dou, Farhi, with Mądry/Zaremba/Pachocki as
+      senior) doing the monitor-in-the-loop experiments. Micah Carroll leads
+      a safety-adjacent research line on deception and monitorability. The
+      organizational pattern is "narrow, deep, empirical" rather than
+      Anthropic's broad portfolio.
+
+  - id: google-deepmind
+    name: Google DeepMind
+    type: frontier-lab
+    description: >
+      Organizes around the **AGI Safety & Alignment** team (Anca Dragan,
+      Rohin Shah, Allan Dafoe, Dave Orr; sponsor Shane Legg) with mech-interp
+      (Neel Nanda, Arthur Conmy, Sebastian Farquhar), dangerous-capability
+      evals (Phuong, Shevlane), and scalable oversight subteams. Gemma Scope
+      releases SAEs publicly; Conmy has integrated probes into production
+      Gemini deployments. Significant shift in 2025: the mech-interp team
+      formally deprioritized SAEs after negative downstream-task results. The
+      **Frontier Safety Framework** v1→v3 is DeepMind's institutional
+      commitment instrument.
+
+  - id: meta
+    name: Meta
+    type: frontier-lab
+    description: >
+      Operates differently — primarily inference-time guardrails under the
+      **Purple Llama** umbrella (Llama Guard 1–4, CyberSecEval, LlamaFirewall).
+      Research is production-oriented rather than alignment-theoretic. No
+      published long-horizon alignment or scheming-evaluation program.
+
+  - id: redwood
+    name: Redwood Research
+    type: independent
+    description: >
+      Buck Shlegeris CEO, Ryan Greenblatt Chief Scientist, plus Mallen,
+      Clymer, Bhatt, Stastny. Originated and owns the **AI Control** agenda.
+      Strong LessWrong/Alignment Forum presence supplements arXiv output; the
+      blog.redwoodresearch.org/p/guide reading list effectively is the
+      field's control bibliography.
+
+  - id: apollo
+    name: Apollo Research
+    type: independent
+    description: >
+      Marius Hobbhahn CEO, Balesni, Scheurer, Meinke, Schoen, Shah.
+      Specializes in scheming evaluations, in-context scheming, deception
+      probes, and pre-deployment evaluations for frontier labs. Ran evals on
+      o1/o3/o4-mini/Claude Opus 4/Grok 4. Spun out as a PBC in 2025.
+
+  - id: metr
+    name: METR
+    type: independent
+    description: >
+      Beth Barnes CEO, Wijk, Painter, Kinniment. Runs task-based autonomous-
+      capability evaluations (HCAST, RE-Bench), publishes the "time horizon"
+      / doubling-time measurements, and increasingly studies evaluation
+      integrity (sandbagging, eval awareness). Released a prototype
+      evaluation in 2025 testing whether CoT monitors catch agents doing
+      side tasks.
+
+  - id: uk-aisi
+    name: UK AI Security Institute
+    type: government
+    description: >
+      Renamed from UK AISI in Feb 2025. Chief Scientist Geoffrey Irving, plus
+      Gal, Kirk, Korbak. Research organized around priority-risk areas,
+      science-of-evaluations, and solutions-via-safety-cases. The **Alignment
+      Team** and **Control Team** publish open research (control-arena,
+      Inspect framework) and have become a central hub for academic-adjacent
+      AI control work. Korbak is lead author on both the CoT Monitorability
+      position paper and the Control Safety Case sketch.
+
+  - id: caisi
+    name: CAISI at NIST (US)
+    type: government
+    description: >
+      Renamed from US AISI in June 2025 as Center for AI Standards and
+      Innovation. Budget roughly 1/10 of UK AISI; scope narrowed toward
+      measurement standards, adversary-AI evaluations, and voluntary
+      agreements with frontier labs. Released joint pre-deployment
+      evaluations with UK AISI for Anthropic and OpenAI models.
+
+  - id: mit
+    name: MIT
+    type: academic
+    description: >
+      Two monitoring-relevant groups: **Max Tegmark's group** (truth probes,
+      Geometry of Truth, mass-mean probing, "Guaranteed Safe AI" agenda) and
+      **Jacob Andreas's CSAIL group** (MAIA automated interpretability,
+      collaborations with Transluce). **Dylan Hadfield-Menell** (Algorithmic
+      Alignment Group) works on oversight and reward hacking.
+
+  - id: northeastern
+    name: Northeastern (Bau Lab / NDIF)
+    type: academic
+    description: >
+      Hosts **David Bau's lab**, which runs the **National Deep Inference
+      Fabric (NDIF)** — shared access to open-model internals via nnsight,
+      used heavily by probe researchers. Samuel Marks (now Anthropic) came
+      through this group.
+
+  - id: berkeley
+    name: UC Berkeley (CHAI / Steinhardt)
+    type: academic
+    description: >
+      **CHAI** (Stuart Russell; assistance games, human-compatible AI) and
+      **Jacob Steinhardt's group** (also Transluce CEO), which focuses on
+      scalable auditing and interpretability assistants.
+
+  - id: nyu
+    name: NYU
+    type: academic
+    description: >
+      Hosts **Sam Bowman's Alignment Research Group** (now primarily at
+      Anthropic) — sandwiching experiments, debate/amplification, CoT
+      faithfulness.
+
+  - id: cambridge-mila
+    name: Cambridge / Mila (Krueger)
+    type: academic
+    description: >
+      Hosts **David Krueger's lab** (KASL; moved to Mila 2024 after
+      co-founding UK AISI) — inner alignment, goal misgeneralization,
+      governance.
+
+  - id: cmu
+    name: Carnegie Mellon (Kolter)
+    type: academic
+    description: >
+      Contributes adversarial robustness work (Zico Kolter; Zou et al.
+      universal jailbreaks).
+
+  - id: goodfire
+    name: Goodfire AI
+    type: interp-startup
+    description: >
+      Commercial mech-interp leader (Series B $150M at $1.25B valuation late
+      2025), with the Ember API productionizing SAE-based steering and the
+      Rakuten PII case as the first real enterprise deployment of SAE probes
+      as safety guardrails.
+
+  - id: transluce
+    name: Transluce
+    type: interp-startup
+    description: >
+      Steinhardt CEO, Schwettmann CTO. Builds Docent for agent transcript
+      analysis and MAIA/Predictive Concept Decoders for interpretability
+      assistants — explicitly oriented toward "translating internals into
+      concepts" for auditors.
+
+  - id: farai
+    name: FAR.AI
+    type: independent
+    description: >
+      Adam Gleave. Runs a portfolio across adversarial evals, the Alignment
+      Workshop at NeurIPS, and red-teaming.
+
+  - id: eleos
+    name: Eleos AI
+    type: independent
+    description: >
+      Long, Campbell. Welfare-focused and mostly tangential — relevant to
+      self-report work but not to monitoring per se.
+
+  - id: mats
+    name: MATS (ML Alignment & Theory Scholars)
+    type: training-pipeline
+    description: >
+      98 scholars, 57 mentors in Summer 2025. Primary feeder program.
+      Monitoring-relevant streams include the Anthropic/OpenAI "megastream"
+      (Perez, Marks, Roger, Benton, Hubinger, Fish, Carroll), Arthur Conmy's
+      GDM stream, Neel Nanda's mech-interp stream, Apollo's Hobbhahn stream,
+      and the Steinhardt/Schwettmann stream at Transluce.
+
+  - id: arena
+    name: ARENA
+    type: training-pipeline
+    description: >
+      The upstream technical bootcamp feeding into MATS and directly into
+      frontier-lab research positions.

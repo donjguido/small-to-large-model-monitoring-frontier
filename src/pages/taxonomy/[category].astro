@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Entry from '../../components/Entry.astro';
+import { categories, entriesByCategory, entriesBySubcategory } from '../../data';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { category: c.id } }));
+}
+
+const { category: categoryId } = Astro.params;
+const category = categories.find((c) => c.id === categoryId)!;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const subs = category.subcategories ?? [];
+const uncategorized = subs.length > 0
+  ? entriesByCategory(category.id).filter((e) => !e.subcategory_id)
+  : entriesByCategory(category.id);
+---
+<Layout title={`${category.name} — Monitoring Frontier AI`} description={category.short}>
+  <div class="breadcrumb"><a href={`${base}/`}>← All categories</a></div>
+  <h1>{category.name}</h1>
+  <p class="lede">{category.short}</p>
+  <p>{category.description}</p>
+
+  {subs.length === 0
+    ? uncategorized.map((e) => <Entry entry={e} />)
+    : (
+      <>
+        {subs.map((sc) => {
+          const subEntries = entriesBySubcategory(category.id, sc.id);
+          if (subEntries.length === 0) return null;
+          return (
+            <section>
+              <div class="subcat-header">{sc.name}</div>
+              <p class="subcat-desc">{sc.description}</p>
+              {subEntries.map((e) => <Entry entry={e} />)}
+            </section>
+          );
+        })}
+        {uncategorized.length > 0 && (
+          <section>
+            <div class="subcat-header">Other</div>
+            {uncategorized.map((e) => <Entry entry={e} />)}
+          </section>
+        )}
+      </>
+    )
+  }
+</Layout>

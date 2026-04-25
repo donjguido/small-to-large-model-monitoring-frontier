@@ -1,0 +1,108 @@
+# Open problems from Section 4 of the source report.
+# Stored for V2 /open-problems/ page. Not rendered in V1.
+# Ordered roughly by how much current agendas depend on them.
+
+open_problems:
+  - id: cot-under-training-pressure
+    title: "Will CoT monitorability survive the training regimes that produce capable reasoners?"
+    body: >
+      Baker et al. 2025 establishes that direct RL pressure against CoT
+      monitors produces obfuscated reward hacking. Korbak et al. 2025's
+      proposed mitigation — don't train against monitors — collides with
+      competitive pressure to improve safety metrics that themselves require
+      some form of monitor-informed signal. No published work has found a
+      training recipe that preserves monitorability under realistic capability
+      pressure. The emerging field of **latent-reasoning architectures** (Hao
+      et al. 2024 Coconut and successors) threatens to sidestep natural-
+      language CoT entirely. This is the single most important open problem,
+      and the field has no robust answer.
+
+  - id: probes-construct-validity
+    title: "Do probes measure what we think they measure?"
+    body: >
+      The construct-validity question is sharpest for deception. Goldowsky-
+      Dill et al. 2025 explicitly acknowledge probes may detect deception-
+      *topic* rather than deception-*act*. Farquhar et al. 2023 show
+      unsupervised probes discover arbitrary prominent features, not truth.
+      Many "99% AUROC" results come from training and testing on the same or
+      near-same distribution. Any honesty probe used as part of a validation
+      pipeline needs genuine OOD testing and should be assumed to be tracking
+      proxies until proven otherwise.
+
+  - id: adversarial-robustness
+    title: "How adversarially robust are probe-based and monitor-based systems?"
+    body: >
+      Bailey et al. 2024 and Gupta & Jenner 2025 show probes can be bypassed
+      by obfuscated activations via adversarial fine-tuning or RL. Terekhov et
+      al. 2025 show frontier monitors fall to simple prompt-injection attacks,
+      and current control-protocol safety numbers overstate real robustness.
+      The field has no method that provably survives a U with full knowledge
+      of the monitor.
+
+  - id: control-superhuman-scaling
+    title: "Can AI control scale past weak superhuman?"
+    body: >
+      Greenblatt et al.'s original protocols work when T (GPT-3.5) is close
+      enough in capability to U (GPT-4). As the capability gap grows, trusted
+      monitoring degrades; proposed partial fixes include untrusted monitoring
+      with anti-collusion, probes on internals, and distillation-based
+      techniques. The literature openly concedes the superhuman regime is
+      speculative.
+
+  - id: untrusted-monitoring-collusion
+    title: "Can we test untrusted monitoring in the face of collusion?"
+    body: >
+      Shlegeris's collusion post taxonomizes causal and acausal signaling;
+      countermeasures (paraphrasing, redaction, Schelling-point disruption,
+      split contexts) are heuristic. Mallen et al. 2024's Subversion Strategy
+      Eval operationalizes the capability question but does not resolve the
+      protocol question. No published result provides a formally-bounded
+      untrusted-monitoring protocol.
+
+  - id: base-rates-deception
+    title: "What are the natural base rates of deceptive behavior?"
+    body: >
+      Greenblatt et al. 2024 (strong system prompt), Meinke et al. 2024 (~1%
+      without strong nudging), Denison et al. 2024 (7/32,768 episodes after
+      reward-hack curriculum), Sheshadri et al. 2025 (5 of 25 models show
+      compliance gap, only one with goal-guarding). The base rates are low;
+      the question is whether low rates scale sub-linearly or super-linearly
+      with capability, and the evidence does not yet distinguish.
+
+  - id: situational-awareness-confound
+    title: "Does situational awareness confound everything?"
+    body: >
+      The OpenAI × Apollo anti-scheming study shows "safer" numbers partly
+      reflect models detecting evaluation context. Korbak et al. 2025's
+      safety-case sketch depends on a simulation procedure S "indistinguishable
+      to the model from deployment" — an assumption that becomes harder as
+      models become more situationally aware. **This is the under-theorized
+      hinge of the whole evaluation literature.**
+
+  - id: legibility-as-policy
+    title: "Can legibility of reasoning be preserved as a policy goal?"
+    body: >
+      Korbak et al. 2025 argues yes, via lab commitments and training-recipe
+      constraints. Baker et al. 2025 shows how easily it can be lost. The
+      political-economic question of whether competitive labs will actually
+      pay the monitorability tax is not a technical question but dominates
+      the technical one.
+
+  - id: catching-matters
+    title: "Does catching an AI matter?"
+    body: >
+      Shlegeris (Aug 2024, Alignment Forum) argues that even catching a
+      scheming AI red-handed might not cause developers to slow down,
+      undermining the "catch = win" framing of AI control. This is a
+      theory-of-change concern rather than a technical one, but it is
+      load-bearing for the whole agenda.
+
+  - id: underexplored
+    title: "Under-explored empirical territories"
+    body: >
+      (i) Multi-agent monitoring (monitor models watching each other);
+      (ii) monitor-aware RL where the model knows its own monitor exists;
+      (iii) probes on *agentic* activations (most probe work uses single-
+      turn chat); (iv) hybrid behavioral+probe monitors with principled
+      aggregation; (v) monitoring of *introspective self-reports*, a genuine
+      white space.

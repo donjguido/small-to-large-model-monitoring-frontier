@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { categories, entryCount } from '../data';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Layout title="Monitoring Frontier AI" description="A taxonomy, bibliography, and frank assessment of runtime monitoring for frontier AI models.">
+  <h1>Monitoring Frontier AI</h1>
+  <p class="lede">
+    Using smaller or weaker models — and small probes trained on internal
+    activations — to flag misbehavior in larger frontier models at runtime
+    has become the central operational bet of frontier-lab safety programs.
+    This review maps the subfield.
+  </p>
+
+  <p>
+    The empirical base is narrower than the rhetoric implies. The field has
+    cohered around four approach families — behavioral monitors, activation
+    probes, protocol-level AI control, and training-signal uses — each with
+    genuine progress and each with load-bearing assumptions that are
+    contested. Korbak et al.'s "fragile opportunity" framing (2025) treats
+    chain-of-thought monitorability as a contingent, protectable property,
+    while Baker et al. (2025) show that optimization against monitors
+    actively destroys that property. No paper yet shows how to square that
+    circle.
+  </p>
+
+  <p>
+    This review covers what the field looks like as of April 2026. The
+    bibliography entries below are annotated with the source report's prose
+    verbatim; the <a href={`${base}/critical-assessment/`}>critical
+    assessment</a> is where the review earns its keep — it catalogues which
+    of the field's load-bearing results are under-replicated, which probe
+    AUROCs should be read skeptically, and where the community's apparent
+    consensus is narrower than it appears.
+  </p>
+
+  <p>
+    Browse the taxonomy by jumping to any branch. Each category page lists
+    the canonical papers inline with annotations and links.
+  </p>
+
+  <a class="critical-link" href={`${base}/critical-assessment/`}>
+    <strong>→ Read the critical assessment</strong><br />
+    <span style="color:var(--fg-muted); font-size:0.92rem;">Blind spots, failed replications, hype vs. evidence — the report's frank read on the field.</span>
+  </a>
+
+  <h2>The taxonomy</h2>
+  <div class="taxonomy-grid">
+    {categories.map((c) => (
+      <a class="tax-card" href={`${base}/taxonomy/${c.id}/`}>
+        <h3>{c.name}</h3>
+        <p class="short">{c.short}</p>
+        <span class="count">{entryCount(c.id)} entries</span>
+      </a>
+    ))}
+  </div>
+
+  <p style="margin-top:2rem; color:var(--fg-muted); font-size:0.92rem;">
+    This is a single-curator AI-assisted compilation. See the
+    <a href={`${base}/about/`}>about page</a> for provenance, scope, and
+    maintenance policy.
+  </p>
+</Layout>

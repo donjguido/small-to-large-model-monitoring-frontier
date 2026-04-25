@@ -1,0 +1,58 @@
+name: Suggest a new bibliography entry
+description: Propose a paper or post to add to the review.
+title: "[entry] "
+labels: ["new-entry"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      placeholder: "e.g. Monitoring Reasoning Models for Misbehavior..."
+    validations:
+      required: true
+  - type: input
+    id: authors
+    attributes:
+      label: Authors
+      description: Comma-separated, in paper order.
+    validations:
+      required: true
+  - type: input
+    id: year
+    attributes:
+      label: Year
+    validations:
+      required: true
+  - type: input
+    id: arxiv
+    attributes:
+      label: arXiv ID or DOI or URL
+      placeholder: "2503.11926"
+  - type: dropdown
+    id: category
+    attributes:
+      label: Proposed category
+      options:
+        - Behavioral monitors
+        - Activation-based monitors
+        - Hybrid approaches
+        - Protocol-level AI control
+        - Training-signal uses
+        - Threat models
+        - Surveys & research agendas
+    validations:
+      required: true
+  - type: textarea
+    id: annotation
+    attributes:
+      label: Proposed annotation (2–3 sentences)
+      description: What does this paper contribute? What is its claim or result?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does this belong?
+      description: Is it foundational? A replication? A cautionary negative result? Explain briefly.
+    validations:
+      required: true

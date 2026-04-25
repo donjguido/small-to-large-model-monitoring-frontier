@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+npm-debug.log*
+
+# Source research report — kept locally, not published.
+Claude Research - Small to Large Model Monitoring Frontier.md
+

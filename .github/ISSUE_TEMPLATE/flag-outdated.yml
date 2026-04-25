@@ -1,0 +1,28 @@
+name: Flag an outdated or superseded claim
+description: A cited result has been replicated, refuted, or substantially updated.
+title: "[outdated] "
+labels: ["outdated"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Which entry or page?
+      description: Entry slug (e.g. "baker-2025-monitoring-reasoning") or page path (e.g. "/critical-assessment/").
+    validations:
+      required: true
+  - type: textarea
+    id: whats-outdated
+    attributes:
+      label: What's outdated?
+      description: Quote the specific claim if possible.
+    validations:
+      required: true
+  - type: input
+    id: superseder
+    attributes:
+      label: Superseding reference
+      description: arXiv ID, DOI, or URL of the paper that updates the claim. Leave blank if you're flagging without a replacement.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

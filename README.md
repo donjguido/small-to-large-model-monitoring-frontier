@@ -1,5 +1,7 @@
 # Monitoring Frontier AI
 
+> ⚠️ **Status banner** — **Last updated:** 2026-04-25 · **Next review:** 2026-10-25 (I'll decide then whether to keep maintaining this) · **Contributions welcome:** issues *and* pull requests are open — see [Contributing](#contributing).
+
 A taxonomy, annotated bibliography, and frank assessment of runtime
 monitoring for frontier AI models — the use of smaller or weaker models,
 and small probes trained on internal activations, to flag misbehavior in
@@ -22,7 +24,9 @@ larger models.
 > site rebuilds.
 
 **Live site:** _paste deploy URL after first deploy_
-**Last reviewed:** 2026-04-25
+**Last reviewed:** 2026-04-25 · **Scheduled re-evaluation:** 2026-10-25 — at the six-month mark I'll decide whether to keep this actively maintained, hand it off, or freeze it as an archive.
+
+> **A note on contributions.** Issue templates remain the easiest path for casual readers, but **pull requests are also welcome** for direct edits to the YAML in `/data`, fixes, or site improvements. If you're unsure whether a change belongs as an issue or a PR, default to whichever is less work for you.
 
 ## What's in the repo
 
@@ -93,8 +97,10 @@ Use one of the issue templates:
 - [Report a broken link](../../issues/new?template=report-broken-link.yml)
 - [Anything else](../../issues/new?template=other.yml)
 
-PRs are not the V1 contribution path — issues are easier for a casual
-reader to file, and a maintainer makes the actual edit.
+Issues are the easiest path for casual readers, and a maintainer makes
+the edit. **Pull requests are also welcome** — direct edits to the YAML
+in `/data`, link fixes, typo fixes, and site improvements can all come
+in as PRs against `main`.
 
 ## V2 ideas (not built yet)
 
